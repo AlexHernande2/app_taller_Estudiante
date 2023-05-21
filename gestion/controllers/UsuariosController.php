@@ -10,55 +10,69 @@ class UsuarioController extends BaseController
 
         function create($usuario){
             $sql ='insert into estudiantes';
-            $sql='(code, name, lastName) values';
-            $sql= $usuario -> getCode(). ',';
-            $sql .= '"' . $usuario->getName() . '",';
-            $sql .= '"' . $usuario->getLastName() . '",';
+            $sql='(codigo, nombres, apellidos) values';
+            $sql= $usuario -> getCodigo(). ',';
+            $sql .= '"' . $usuario->getNombre() . '",';
+            $sql .= '"' . $usuario->getApellido() . '",';
             $sql .= ')';
             $conexiondb = new ConexionDbController();
             $resultadoSQL = $conexiondb->execSQL($sql);
             $conexiondb->close();
             return $resultadoSQL;
         }
+  
 
         function read(){
-            $sql = 'select * from usuarios'; //Traer los usuarios
+            $sql = 'select * from estudiantes'; //Traer los usuarios
             $conexiondb = new ConexionDbController();
             $resultadoSQL = $conexiondb->execSQL($sql);
             $usuarios = [];
             while($registro = $resultadoSQL -> fetch_assoc()){ //fetch_assoc: recorrer resultados del SQL
                 $usuario = new Usuario();
-                $usuario ->setCode($registro['code']);
-                $usuario ->setName($registro['name']);
-                $usuario ->setLastName($registro['lastName']);
+                $usuario ->setCodigo($registro['codigo']);
+                $usuario ->setNombre($registro['nombres']);
+                $usuario ->setApellido($registro['apellidos']);
                 array_push($usuarios, $usuario);
             }
             $conexiondb->close();
             return $usuarios;
         }
+ 
 
-        function readRow($id){
-            $sql = 'select * from usuarios'; //Traer los usuarios
-            $sql .= ' where id=' .$id;
+        function readRow($codigo){
+            $sql = 'select * from estudiantes'; //Traer los usuarios
+            $sql .= ' where codigo=' .$codigo;
             $conexiondb = new ConexionDbController();
             $resultadoSQL = $conexiondb->execSQL($sql);
             $usuario = new Usuario();
             while($registro = $resultadoSQL -> fetch_assoc()){ //fetch_assoc: recorrer resultados del SQL
-                $usuario ->setCode($registro['code']);
-                $usuario ->setName($registro['name']);
-                $usuario ->setLastName($registro['lastName']);
+                $usuario ->setCodigo($registro['codigo']);
+                $usuario ->setNombre($registro['nombre']);
+                $usuario ->setApellido($registro['apellidos']);
             }
             $conexiondb->close();
             return $usuario;
         }
 
-        function update($id, $usuario){
-            
-            
+        function update($codigo, $usuario){
+            $sql = 'update estudiantes set ';
+            $sql .= 'codigo="' .$usuario->getCodigo() .'",';
+            $sql .= 'nombres="' .$usuario->getNombre() .'",';
+            $sql .= 'apellidos="' .$usuario->getCodigo() .'" ';
+            $sql .= ' where codigo=' . $codigo;
+            $conexiondb = new ConexionDbController();
+            $resultadoSQL = $conexiondb->execSQL($sql);
+            $conexiondb->close();
+            return $resultadoSQL;
         }
 
-        function delete(){
-           
+
+        function delete($codigo){
+            $sql = 'delete from estudiantes where codigo=' . $codigo;
+            $conexiondb = new ConexionDbController();
+            $resultadoSQL = $conexiondb->execSQL($sql);
+            $conexiondb->close();
+            return $resultadoSQL;
         }
 
     }

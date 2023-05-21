@@ -2,28 +2,28 @@
 namespace usuario;
 
 class Usuario{
-    private $code;
-    private $name;
-    private $lastName;
+    private $codigo;
+    private $nombre;
+    private $apellido;
  
-    public function getCode(){
-        return $this->code;
+    public function getCodigo(){
+        return $this->codigo;
     }
-    public function setCode($value){
-        $this-> code  = $value;
+    public function setCodigo($value){
+        $this-> codigo  = $value;
     }
-    public function getName(){
-        return $this->name;
+    public function getNombre(){
+        return $this->nombre;
     }
-    public function setName($value){
-        $this-> name  = $value;
+    public function setNombre($value){
+        $this-> nombre  = $value;
     }
 
-    public function getLastName(){
-        return $this->lastName;
+    public function getApellido(){
+        return $this->apellido;
     }
-    public function setLastName($value){
-        $this-> lastName  = $value;
+    public function setApellido($value){
+        $this-> apellido  = $value;
     }
 }
 ?>
