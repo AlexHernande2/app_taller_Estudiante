@@ -24,11 +24,30 @@ if (!empty($codigo)){
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registro</title>
+    <title>testudiante</title>
 </head>
 <body>
 <h1><?php echo $titulo; ?></h1>
-<form action=""></form>
+<form action="<?php echo $urlAction; ?>"  method="post">
+<label>
+            <span>Código:</span>
+            <input type="number" name="codigo" min="1" value="<?php echo $usuario->getCodigo();?>" require>
+        </label>
+        <br>
+        <label>
+            <span>Nombre:</span>
+            <input type="text" name="nombre" value="<?php echo $usuario->getNombre();?>" require>
+        </label>
+        <br>
+        <label>
+            <span>Apellido:</span>
+            <input type="text" name="apellido" value="<?php echo $usuario-> getApellido(); ?>" require>
+        </label>
+        <br>
+        
+        <br>
+        <button type="submit">Guardar</button>
+</form>
 
     
 </body>

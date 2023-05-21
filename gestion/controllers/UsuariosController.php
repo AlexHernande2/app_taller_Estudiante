@@ -8,18 +8,22 @@ use usuario\Usuario;
 class UsuarioController extends BaseController
     {
 
+
+
         function create($usuario){
             $sql ='insert into estudiantes';
-            $sql='(codigo, nombres, apellidos) values';
-            $sql= $usuario -> getCodigo(). ',';
+            $sql .='(codigo, nombres, apellidos) values';
+            $sql .= '(';
+            $sql .= $usuario -> getCodigo(). ',';
             $sql .= '"' . $usuario->getNombre() . '",';
-            $sql .= '"' . $usuario->getApellido() . '",';
+            $sql .= '"' . $usuario->getApellido() . '"';
             $sql .= ')';
             $conexiondb = new ConexionDbController();
             $resultadoSQL = $conexiondb->execSQL($sql);
             $conexiondb->close();
             return $resultadoSQL;
         }
+    
   
 
         function read(){
