@@ -40,8 +40,9 @@ $usuarios = $usuarioController->read();
                     echo '<td>' . $usuario->getNombre() . '</td>';
                     echo '<td>' . $usuario->getApellido() . '</td>';
                     echo '<td>';
-                    echo '      <a href="views/form_usuario.php?id=' . $usuario->getCodigo() . '">modificar</a>';
-                    echo '      <a href="views/accion_borrar_usuario.php?id=' . $usuario->getCodigo() . '">borrar</a>';
+                    echo '      <a href="views/form_usuario.php?codigo=' . $usuario->getCodigo() . '">Modificar</a>';
+                    echo '      <a href="views/accion_borrar_usuario.php?codigo=' . $usuario->getCodigo() . '">Borrar</a>';
+                    echo '      <a href="notas.php?codigo=' . $usuario->getCodigo() . '">Nota</a>';
                     echo '</td>';
                     echo '</tr>';
                 }
@@ -60,8 +61,6 @@ $usuarios = $usuarioController->read();
                 ?>
             </tbody>
         </table>
-
-        <!-- <button class="bottom-right" href="views/form_usuario.php">Nuevo</button> -->
     </main>
 
 </body>
