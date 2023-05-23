@@ -19,8 +19,8 @@ class NotaController extends BaseControllerNota
             $sql .='(';
             $sql .= $nota -> getId(). ',';
             $sql .=  '"' .$nota -> getDescripcion(). ',';
-            $sql .=  '"' .$nota-> getNota(). ',';
-            $sql .=  '"' .$nota-> getCodigoUsuario(). ',';
+            $sql .=  '"' .$nota-> getNota(). '",';
+            $sql .=  '"' .$nota-> getCodigoUsuario(). '"';
             $sql .=')';
             $conexiondb = new ConexionDbController();
             $resultadoSQL = $conexiondb->execSQL($sql);
@@ -39,20 +39,13 @@ class NotaController extends BaseControllerNota
             $sql .= 'id="' .$nota->getId() .'",';
             $sql .= 'descripcion="' .$nota->getDescription() .'",';
             $sql .= 'nota="' .$nota->getNota() .'",';
-            $sql .= 'codigoEstudiante="' .$nota->getCodigoUsuario() .'"';
+            $sql .= 'codigoEstudiante="' .$nota->getCodigoUsuario() .'" ';
             $sql .= 'where id=' .$id;
             $conexiondb = new ConexionDbController();
             $resultadoSQL = $conexiondb->execSQL($sql);
             $conexiondb->close();
             return $resultadoSQL;
         }
-    
-        public function delete($id)
-        {
-            $sql = 'delete from actividades where id=' .$id;
-          
-        }
-    
         public function readRow($id){
             $sql = 'select *  from actividades'; 
             $sql .= ' where id=' .$id;
@@ -69,8 +62,19 @@ class NotaController extends BaseControllerNota
                 array_push($notas,$nota);
             }
             $conexiondb->close();
-            return $nota;
+            return $notas;
         }
+
+          
+        public function delete($id)
+        {
+            $sql = 'delete from actividades where id=' .$id;
+            $conexiondb = new ConexionDbController();
+            $resultadoSQL = $conexiondb->execSQL($sql);
+            $conexiondb->close();
+            return $resultadoSQL;
+        }
+    
     }
 
        /*       

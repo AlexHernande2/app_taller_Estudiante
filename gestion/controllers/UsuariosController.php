@@ -69,8 +69,6 @@ class UsuarioController extends BaseController
             $conexiondb->close();
             return $resultadoSQL;
         }
-
-
         function delete($codigo){
             $sql = 'delete from estudiantes where codigo=' . $codigo;
             $conexiondb = new ConexionDbController();

@@ -1,4 +1,24 @@
+<?php
 
+require 'models/usuario.php';
+require 'models/nota.php';
+require 'controllers/conexionDbController.php';
+require 'controllers/baseController.php';
+require 'controllers/UsuariosController.php';
+require 'controllers/notaController.php';
+
+
+
+use notaController\NotaController;
+
+$notaController = new NotaController();
+
+$id = $_GET['codigo']; 
+$notas = $notaController->readRow($id);
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -29,24 +49,24 @@
             </thead>
             <tbody>
                 <?php
-                // foreach ($notas as $nota) {
-                //     echo '<tr>';
-                //     echo '<td>' . $nota->getId() . '</td>';
-                //     echo '<td>' . $nota->getDescripcion() . '</td>';
-                //     echo '<td>' . $nota->getNota() . '</td>';
-                //     echo '<td>';
-                //     echo '      <a href="views/form_usuario.php?id=' . $usuario->getId() . '">Modificar</a>';
-                //     echo '      <a href="views/accion_borrar_usuario.php?id=' . $usuario->getId() . '">Borrar</a>';
-                //     echo '      <a href="notas.php?codigo=' . $usuario->getCodigo() . '">Nota</a>';
-                //     echo '</td>';
-                //     echo '</tr>';
-                // }
-        
-          
+                foreach ($notas as $nota) {
+                    echo '<tr>';
+                    echo '<td>' . $nota->getId() . '</td>';
+                    echo '<td>' . $nota->getDescripcion() . '</td>';
+                    echo '<td>' . $nota->getNota() . '</td>';
+                    echo '<td>';
+                    echo '      <a href="views/form_usuario.php?id=' . $nota->getId() . '">Modificar</a>';
+                    echo '      <a href="views/accion_borrar_usuario.php?id=' . $nota->getId() . '">Borrar</a>';
+                    echo '      <a href="notas.php?codigo=' . $nota->getCodigo() . '">Nota</a>';
+                    echo '</td>';
+                    echo '</tr>';
+                }
+
+
                 ?>
-                 <br>
-                <a href="../index.php">nuevo</a>
-               
+                <br>
+                <a href="views/form_notas.php">nuevo</a>
+
             </tbody>
 
 
