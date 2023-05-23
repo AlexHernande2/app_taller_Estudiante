@@ -9,10 +9,18 @@ require 'controllers/notaController.php';
 
 
 
+use usuario\Usuario;
+
+
 use notaController\NotaController;
-
 $notaController = new NotaController();
+// Para obtener el codigo y el nombre de la persona a la cual se le va a gregar la nota
+use usuarioController\UsuarioController;
+$usuarioController= new UsuarioController();
+$codigo = $_GET['codigo'];
+$usuario = $usuarioController->readRow($codigo);
 
+//
 $id = $_GET['codigo']; 
 $notas = $notaController->readRow($id);
 
@@ -35,12 +43,12 @@ $notas = $notaController->readRow($id);
 
         <label>
             <span>Código:</span>
-            <input type="number" name="codigo" min="1" require>
+            <input type="number" name="codigo" min="1"  value="<?php echo $usuario->getCodigo(); ?>" readonly>
         </label>
         <br>
         <label>
             <span>Nombre:</span>
-            <input type="text" name="nombres" require>
+            <input type="text" name="nombres" value="<?php echo $usuario->getNombre(); ?>" readonly>
         </label>
         <table>
             <thead>
