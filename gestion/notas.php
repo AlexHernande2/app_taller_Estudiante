@@ -21,11 +21,13 @@ $codigo = $_GET['codigo'];
 $usuario = $usuarioController->readRow($codigo);
 
 //
-$id = $_GET['codigo']; 
-$notas = $notaController->readRow($id);
+// $id = $_GET['codigo']; 
+// $notas = $notaController->readRow($id);
 
-
-
+// Se obtiene el valor del parámetro 'codigo' enviado por GET y se guarda en la variable $codigoUsuario 
+$codigoUsuario = $_GET['codigo'];
+// Se llama al método readRow de $notaController pasando $id como argumento y se guarda el resultado en $notas
+$notas = $notaController->readRow($codigoUsuario);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -65,12 +67,9 @@ $notas = $notaController->readRow($id);
                     echo '<td>';
                     echo '      <a href="views/form_usuario.php?id=' . $nota->getId() . '">Modificar</a>';
                     echo '      <a href="views/accion_borrar_usuario.php?id=' . $nota->getId() . '">Borrar</a>';
-                    echo '      <a href="notas.php?codigo=' . $nota->getCodigo() . '">Nota</a>';
                     echo '</td>';
                     echo '</tr>';
                 }
-
-
                 ?>
                 <br>
                 <a href="views/form_notas.php">nuevo</a>

@@ -12,7 +12,7 @@
         abstract function read();
         abstract function update($id, $nota);
         abstract function delete($id);
-        abstract function readRow($id);
+        abstract function readRow($codigoUsuario);
     }
     
 

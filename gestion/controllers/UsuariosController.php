@@ -50,6 +50,7 @@ class UsuarioController extends BaseController
             $resultadoSQL = $conexiondb->execSQL($sql);
             $usuario = new Usuario();
             while($registro = $resultadoSQL -> fetch_assoc()){ //fetch_assoc: recorrer resultados del SQL
+                //lo que va dentro de $registro debe ser como se llama en la base de datos la columna 
                 $usuario ->setCodigo($registro['codigo']);
                 $usuario ->setNombre($registro['nombres']);
                 $usuario ->setApellido($registro['apellidos']);
@@ -60,9 +61,9 @@ class UsuarioController extends BaseController
 
         function update($codigo, $usuario){
             $sql = 'update estudiantes set ';
-            $sql .= 'codigo="' .$usuario->getCodigo() .'",';
-            $sql .= 'nombres="' .$usuario->getNombre() .'",';
-            $sql .= 'apellidos="' .$usuario->getApellido() .'" ';
+            $sql .= 'codigo="' . $usuario->getCodigo() .'",';
+            $sql .= 'nombres="' . $usuario->getNombre() .'",';
+            $sql .= 'apellidos="' . $usuario->getApellido() .'" ';
             $sql .= ' where codigo=' . $codigo;
             $conexiondb = new ConexionDbController();
             $resultadoSQL = $conexiondb->execSQL($sql);

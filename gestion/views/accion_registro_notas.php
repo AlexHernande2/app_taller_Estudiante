@@ -13,12 +13,14 @@ use usuarioController\UsuarioController;
 use notaController\NotaController;
 
 $nota = new Nota();
+//Loque va en el post es el nombre del name del input 
 $nota -> setId($_POST['id']);
 $nota -> setDescripcion($_POST['descripcion']);
 $nota -> setNota($_POST['nota']);
 
 $usuarioController = new UsuarioController();
-$usuario = $usuarioController->readRow($_POST['codigo']);
+// $usuario = $usuarioController->readRow($_POST['codigo']);
+$usuario = $usuarioController->readRow($_POST['codigoUsuario']);
 // Ayuda a tener el código del usuario en el objeto $nota
 $nota -> setCodigoUsuario($usuario->getCodigo());
 

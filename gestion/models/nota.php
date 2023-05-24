@@ -18,8 +18,8 @@ class Nota extends Usuario{
     public function getCodigoUsuario(){
         return $this->codigoUsuario;
     }
-    public function setCodigoUsuario($codigo){
-        $this-> codigoUsuario  = $codigo;
+    public function setCodigoUsuario($value){
+        $this-> codigoUsuario  = $value;
     }
     
     public function getDescripcion(){

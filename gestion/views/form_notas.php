@@ -15,14 +15,19 @@ $id = empty($_GET['id']) ? '' : $_GET['id']; //Si es vacio
 //lee los '' vacios, en caso contrario lee el $_GET
 $titulo = 'Registrar Nota';
 $urlAction = "accion_registro_notas.php";
-$usuario = new Usuario();
+$nota = new Nota();
+// $usuario = new Usuario();
+
 if (!empty($id)) {
-    $titulo = 'Modificar Usuario';
+    $titulo = 'Modificar Nota';
     $urlAction = "accion_modificar_notas.php";
     $notaController = new NotaController();
-    $nota = $notaController-> readRow($id);
+    $nota = $notaController->readRow($id);
+    
     // $usuarioController = new UsuarioController();
-    // $usuario = $usuarioController->readRow($codigo);
+    // // $usuario = $usuarioController->readRow($codigo);
+    // $usuario = $usuarioController->readRow($nota->getCodigoUsuario());
+
 }
 
 ?>
@@ -40,22 +45,22 @@ if (!empty($id)) {
     <form action="<?php echo $urlAction; ?>" method="post">
         <label>
             <span>Id:</span>
-            <input type="number" name="id" min="1" value="<?php echo $usuario->getCodigo(); ?>" require>
+            <input type="number" name="id" min="1" value="<?php echo $nota->getId(); ?>" require>
         </label>
         <br>
         <label>
             <span>Actividad:</span>
-            <input type="text" name="descripcion" value="<?php echo $usuario->getNombre(); ?>" require>
+            <input type="text" name="descripcion" value="<?php echo $nota->getDescripcion(); ?>" require>
         </label>
         <br>
         <label>
             <span>Nota:</span>
-            <input type="number" name="nota" value="<?php echo $usuario->getApellido(); ?>" require>
+            <input type="number" name="nota" value="<?php echo $nota->getNota(); ?>" require>
         </label>
         <br>
         <label>
             <span>Codigo Estudiante:</span>
-            <input type="number" name="nota" value="<?php echo $usuario->getApellido(); ?>" require>
+            <input type="number" name="codigoUsuario" value="<?php echo $nota->getCodigoUsuario(); ?>" require>
         </label>
         <br>
 
