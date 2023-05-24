@@ -66,7 +66,7 @@ $notas = $notaController->readRow($codigoUsuario);
                     echo '<td>' . $nota->getNota() . '</td>';
                     echo '<td>';
                     echo '      <a href="views/form_usuario.php?id=' . $nota->getId() . '">Modificar</a>';
-                    echo '      <a href="views/accion_borrar_usuario.php?id=' . $nota->getId() . '">Borrar</a>';
+                    echo '      <a href="views/accion_borrar_nota.php?id=' . $nota->getId() . '">Borrar</a>';
                     echo '</td>';
                     echo '</tr>';
                 }
