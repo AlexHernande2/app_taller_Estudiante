@@ -8,8 +8,8 @@ require 'controllers/UsuariosController.php';
 require 'controllers/notaController.php';
 
 
-
-use usuario\Usuario;
+$contadorNota=0;
+$sumanota=0;
 
 
 use notaController\NotaController;
@@ -20,9 +20,6 @@ $usuarioController= new UsuarioController();
 $codigo = $_GET['codigo'];
 $usuario = $usuarioController->readRow($codigo);
 
-//
-// $id = $_GET['codigo']; 
-// $notas = $notaController->readRow($id);
 
 // Se obtiene el valor del parámetro 'codigo' enviado por GET y se guarda en la variable $codigoUsuario 
 $codigoUsuario = $_GET['codigo'];
@@ -54,8 +51,9 @@ $notas = $notaController->readRow($codigoUsuario);
         </label>
         <table>
             <thead>
-                <th>Actividad </th>
-                <th>Nota</th>
+                <th>Id: </th>
+                <th>Actividad:</th>
+                <th>Nota:</th>
             </thead>
             <tbody>
                 <?php
@@ -65,14 +63,31 @@ $notas = $notaController->readRow($codigoUsuario);
                     echo '<td>' . $nota->getDescripcion() . '</td>';
                     echo '<td>' . $nota->getNota() . '</td>';
                     echo '<td>';
-                    echo '      <a href="views/form_usuario.php?id=' . $nota->getId() . '">Modificar</a>';
-                    echo '      <a href="views/accion_borrar_nota.php?id=' . $nota->getId() . '">Borrar</a>';
+                    echo '      <a href="views/form_notas.php?id=' . $nota->getId() . '&codigo=' . $codigoUsuario . '">Modificar</a>';
+                    echo '      <a href="views/accion_borrar_nota.php?id=' . $nota->getId() . '&codigo=' . $codigoUsuario . '">Borrar</a>';
                     echo '</td>';
                     echo '</tr>';
+                    $contadorNota ++;
+                    $sumanota= $sumanota + $nota->getNota();
+                }
+
+                if($contadorNota==0){
+                    $imprimir= "No hay notas ingresadas ";
+                }else {
+                    $promedio = $sumanota/ $contadorNota;
+                    if($promedio >= 3){
+                        $imprimir = '<label style="color: green">Promedio: ' . number_format($promedio, 2) . '</label>';
+                    }else{
+                        $imprimir = '<label style="color: red">Promedio: ' . number_format($promedio, 2) . '</label>';
+                    }
                 }
                 ?>
+                  <tr>
+                    <td colspan="3"><?php echo $imprimir; ?></td>
+                </tr>
                 <br>
-                <a href="views/form_notas.php">nuevo</a>
+                <a href="views/form_notas.php?codigo=<?php echo $codigoUsuario; ?>">Nuevo</a>
+                <!-- <a href="views/form_notas.php">nuevo</a> -->
 
             </tbody>
 

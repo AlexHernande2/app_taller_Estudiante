@@ -59,12 +59,16 @@ class UsuarioController extends BaseController
             return $usuario;
         }
 
+     
+
+
+
         function update($codigo, $usuario){
             $sql = 'update estudiantes set ';
-            $sql .= 'codigo="' . $usuario->getCodigo() .'",';
-            $sql .= 'nombres="' . $usuario->getNombre() .'",';
-            $sql .= 'apellidos="' . $usuario->getApellido() .'" ';
-            $sql .= ' where codigo=' . $codigo;
+            $sql .= 'codigo ="' . $usuario->getCodigo() .'",';
+            $sql .= 'nombres ="' . $usuario->getNombre() .'",';
+            $sql .= 'apellidos ="' . $usuario->getApellido() .'" ';
+            $sql .= ' where codigo =' . $codigo;
             $conexiondb = new ConexionDbController();
             $resultadoSQL = $conexiondb->execSQL($sql);
             $conexiondb->close();

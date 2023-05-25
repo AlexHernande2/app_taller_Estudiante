@@ -11,24 +11,27 @@ use usuarioController\UsuarioController;
 use nota\Nota;
 use notaController\NotaController;
 
+$usuarioController= new UsuarioController();
+$codigo = $_GET['codigo'];
+$usuario = $usuarioController->readRow($codigo);
+
+
+
 $id = empty($_GET['id']) ? '' : $_GET['id']; //Si es vacio
 //lee los '' vacios, en caso contrario lee el $_GET
+
 $titulo = 'Registrar Nota';
 $urlAction = "accion_registro_notas.php";
 $nota = new Nota();
-// $usuario = new Usuario();
+
 
 if (!empty($id)) {
     $titulo = 'Modificar Nota';
     $urlAction = "accion_modificar_notas.php";
     $notaController = new NotaController();
-    $nota = $notaController->readRow($id);
-    
-    // $usuarioController = new UsuarioController();
-    // // $usuario = $usuarioController->readRow($codigo);
-    // $usuario = $usuarioController->readRow($nota->getCodigoUsuario());
-
+    $nota = $notaController->readRow1($id);
 }
+
 
 ?>
 
@@ -44,9 +47,11 @@ if (!empty($id)) {
     <h1><?php echo $titulo; ?></h1>
     <form action="<?php echo $urlAction; ?>" method="post">
         <label>
-            <span>Id:</span>
-            <input type="number" name="id" min="1" value="<?php echo $nota->getId(); ?>" require>
+            <!-- <span>Id:</span> -->
+            <input hidden type="number" name="id" min="1" value="<?php echo $nota->getId(); ?>">
         </label>
+        <br>
+
         <br>
         <label>
             <span>Actividad:</span>
@@ -58,10 +63,15 @@ if (!empty($id)) {
             <input type="number" name="nota" value="<?php echo $nota->getNota(); ?>" require>
         </label>
         <br>
+        <!-- <label>
+            <span>Codigo Estudiante:</span>
+            <input type="number" name="codigoUsuario" value="<?php echo $nota->getCodigoUsuario($codigo); ?>" require>
+        </label>  -->
         <label>
             <span>Codigo Estudiante:</span>
-            <input type="number" name="codigoUsuario" value="<?php echo $nota->getCodigoUsuario(); ?>" require>
-        </label>
+            <input type="number" name="codigoUsuario" value="<?php echo $codigo; ?>" readonly>
+
+        </label> 
         <br>
 
         <br>

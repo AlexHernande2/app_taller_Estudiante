@@ -3,7 +3,7 @@ namespace nota;
 
 use usuario\Usuario;
 
-class Nota extends Usuario{
+class Nota {
     private $id;
     private $descripcion;
     private $nota;

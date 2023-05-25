@@ -5,6 +5,7 @@ require '../controllers/conexionDbController.php';
 require '../controllers/baseController.php';
 require '../controllers/UsuariosController.php';
 
+
 use usuario\Usuario;
 use usuarioController\UsuarioController;
 
@@ -35,6 +36,7 @@ if (!empty($codigo)) {
             <span>Código:</span>
             <input type="number" name="codigo" min="1" value="<?php echo $usuario->getCodigo(); ?>" require>
         </label>
+
         <br>
         <label>
             <span>Nombre:</span>
