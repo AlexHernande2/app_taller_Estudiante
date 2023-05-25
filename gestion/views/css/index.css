@@ -1,3 +1,38 @@
-.table{
+.table {
     width: 100%;
+    border-spacing: 0;
+}
+
+.table th,
+td {
+    border: 2px solid #e89696;
+    text-align: center;
+}
+
+.titulo {
+    text-align: center;
+    border: 2px solid #f2eaea;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* Ponerle color a los bordes al texto */
+    -webkit-text-stroke: 0.3px #f81f1f;
+    background: rgba(240, 240, 240, 0.46);
+    border-radius: 10px;
+}
+
+.nuevoRegistro {
+    text-decoration: none;
+    color: #000000;
+    position: fixed;
+    /* para que pueda aparecer ya que con la imagen queda en la parte de abajo */
+    z-index: 1;
+    background: transparent;
+}
+
+.nuevoRegistro:hover {
+    background-color: #34bb7a;
+    border: 1px solid #00ffee;
+    /* Cambiar el color de fodo cuando pase el cursor */
+    color: #2c06ff;
+    box-shadow: 10px 5px 16px 5px #0cdb16;
 }

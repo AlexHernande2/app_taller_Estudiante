@@ -25,8 +25,8 @@ $usuarios = $usuarioController->read();
 
 <body>
     <main>
-        <h1>Estudiantes</h1>
-        <a href="views/form_usuario.php">nuevo</a>
+        <h1 class="titulo">Estudiantes</h1>
+        <a class="nuevoRegistro" href="views/form_usuario.php">Nuevo registro</a>
         <br>
         <br>
 
@@ -35,6 +35,7 @@ $usuarios = $usuarioController->read();
                 <th>Código </th>
                 <th>Nombre</th>
                 <th>Apellido </th>
+                <th></th>
             </thead>
             <tbody>
                 <?php
